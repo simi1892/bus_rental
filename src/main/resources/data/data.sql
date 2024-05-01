@@ -205,3 +205,22 @@ insert into t_user (id, first_name, last_name, email, address_id, is_active, cre
 insert into t_user (id, first_name, last_name, email, address_id, is_active, create_date, role) values (98, 'Dunc', 'Glendenning', 'dglendenning2p@netlog.com', 98, true, '2023-12-22', 'SUPERUSER');
 insert into t_user (id, first_name, last_name, email, address_id, is_active, create_date, role) values (99, 'Selene', 'Addinall', 'saddinall2q@boston.com', 99, true, '2023-12-16', 'ADMIN');
 insert into t_user (id, first_name, last_name, email, address_id, is_active, create_date, role) values (100, 'Auguste', 'Salleir', 'asalleir2r@youku.com', 100, true, '2023-08-16', 'ADMIN');
+
+---------------------------------
+-- BUS --
+---------------------------------
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (1, 'Hoebart', 'Mercury', 'Cougar', 1993, 2027, 4, '2024-02-15', 94719.8);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (2, 'Boothe', 'Audi', 'A6', 2012, 2026, 6, '2022-11-07', 74413.28);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (3, 'Alejandro', 'Ford', 'Focus ST', 2013, 2025, 7, '2020-10-26', 142446.95);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (4, 'Clint', 'Ford', 'Fusion', 2010, 2028, 7, '2023-01-30', 98285.55);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (5, 'Fred', 'Ford', 'E-Series', 2010, 2023, 4, '2024-03-09', 131003.03);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (6, 'Oran', 'GMC', 'Yukon XL 1500', 2003, 2022, 3, '2021-11-10', 136909.76);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (7, 'Byrann', 'Mercury', 'Cougar', 1986, 2024, 7, '2022-10-18', 110113.08);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (8, 'Rickard', 'Toyota', 'Tundra', 2010, 2029, 8, '2022-09-10', 104575.64);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (9, 'Obediah', 'Ford', 'Escort', 1998, 2029, 8, '2020-10-15', 130247.14);
+insert into t_bus (id, license_plate, make, model, built_year, purchase_year, capacity, last_service_date, amount_km_when_bought) values (10, 'Franklin', 'Ford', 'Escort', 1990, 2025, 7, '2021-06-19', 109393.72);
+
+---------------------------------
+-- PICTURE --
+---------------------------------
+-- NOT IMPLEMENTED
