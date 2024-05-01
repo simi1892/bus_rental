@@ -34,6 +34,8 @@ public class UserDbo extends BaseDbo {
     @Column(nullable = false)
     private LocalDate createDate;
 
+    // TODO: Discount
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
