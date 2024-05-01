@@ -12,7 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class AddressDbo extends BaseDbo {
-// TODO: naming strategy that dbo is ignored
     @Column
     private String street;
 
