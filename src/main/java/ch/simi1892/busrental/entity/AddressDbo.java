@@ -25,5 +25,5 @@ public class AddressDbo extends BaseDbo {
     private String city;
 
     @OneToOne(mappedBy = "address")
-    private CustomerDbo customer;
+    private UserDbo user;
 }

@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDbo extends BaseDbo {
+public class UserDbo extends BaseDbo {
 
     @Column
     private String firstName;
