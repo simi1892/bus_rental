@@ -1,9 +1,6 @@
 package ch.simi1892.busrental.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,4 +33,7 @@ public class UserDbo extends BaseDbo {
 
     @Column
     private LocalDate createDate;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
