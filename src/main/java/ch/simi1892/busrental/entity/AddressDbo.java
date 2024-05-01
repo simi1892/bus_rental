@@ -12,16 +12,16 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class AddressDbo extends BaseDbo {
-    @Column
+    @Column(nullable = false)
     private String street;
 
-    @Column
+    @Column(nullable = false)
     String streetNr;
 
-    @Column
+    @Column(nullable = false)
     private int zip;
 
-    @Column
+    @Column(nullable = false)
     private String city;
 
     @OneToOne(mappedBy = "address")

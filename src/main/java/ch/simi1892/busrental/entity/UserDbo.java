@@ -15,23 +15,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserDbo extends BaseDbo {
 
-    @Column
+    @Column(nullable = false)
     private String firstName;
 
-    @Column
+    @Column(nullable = false)
     private String lastName;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
     @OneToOne
     @JoinColumn(name = "address_id")
     private AddressDbo address;
 
-    @Column
+    @Column(nullable = false)
     private boolean isActive;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate createDate;
 
     @Enumerated(EnumType.STRING)
