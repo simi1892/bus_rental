@@ -1,0 +1,39 @@
+package ch.simi1892.busrental.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class CustomerDbo extends BaseDbo {
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String email;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private AddressDbo address;
+
+    @Column
+    private boolean isActive;
+
+    @Column
+    private LocalDate createDate;
+}

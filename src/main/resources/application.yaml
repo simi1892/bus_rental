@@ -1,3 +1,4 @@
+# todo: set dynamic
 spring:
   profiles:
     active: dev
