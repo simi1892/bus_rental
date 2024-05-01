@@ -36,4 +36,10 @@ public class UserDbo extends BaseDbo {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public enum Role {
+        CUSTOMER,
+        SUPERUSER,
+        ADMIN
+    }
 }
