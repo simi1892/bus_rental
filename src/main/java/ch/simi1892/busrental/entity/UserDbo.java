@@ -53,6 +53,7 @@ public class UserDbo extends BaseDbo {
 
     public enum UserRole {
         CUSTOMER,
+        TRUSTED,
         SUPERUSER,
         ADMIN
     }
