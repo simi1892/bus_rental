@@ -25,6 +25,7 @@ public class LendDbo extends BaseDbo {
     @Column(nullable = false)
     private LocalDateTime endDateTime;
 
+    // TODO: add @Min(value = 0L, message = "The value must be positive") to several places
     @Column(nullable = false)
     private double price;
 
