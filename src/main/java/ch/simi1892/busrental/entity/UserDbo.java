@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,12 +35,21 @@ public class UserDbo extends BaseDbo {
     @Column(nullable = false)
     private LocalDate createDate;
 
-    // TODO: Discount
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int discountInPercent;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private UserRole userRole;
 
-    public enum Role {
+    @ManyToMany
+    @JoinTable(
+            name = "user_lend",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "lend_id")
+    )
+    private List<LendDbo> lends;
+
+    public enum UserRole {
         CUSTOMER,
         SUPERUSER,
         ADMIN
