@@ -1,6 +1,7 @@
 package ch.simi1892.busrental.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class UserDbo extends BaseDbo {
     private LocalDate createDate;
 
     @Column(nullable = false, columnDefinition = "int default 0")
+    @Min(value = 0, message = "The value must be positive")
     private int discountInPercent;
 
     @Enumerated(EnumType.STRING)

@@ -1,6 +1,7 @@
 package ch.simi1892.busrental.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -25,8 +26,8 @@ public class LendDbo extends BaseDbo {
     @Column(nullable = false)
     private LocalDateTime endDateTime;
 
-    // TODO: add @Min(value = 0L, message = "The value must be positive") to several places
     @Column(nullable = false)
+    @Min(value = 0, message = "The value must be positive")
     private double price;
 
     @Enumerated(EnumType.STRING)

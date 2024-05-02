@@ -1,6 +1,7 @@
 package ch.simi1892.busrental.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -23,18 +24,21 @@ public class BusDbo extends BaseDbo {
     private String model;
 
     @Column(nullable = false)
+    @Min(value = 1900, message = "The value must be greater than 1900")
     private int builtYear;
 
     @Column(nullable = false)
     private int purchaseYear;
 
     @Column(nullable = false)
+    @Min(value = 1, message = "The value must be greater than 1")
     private int capacity;
 
     @Column(nullable = false)
     private LocalDate lastServiceDate;
 
     @Column(nullable = false)
+    @Min(value = 0, message = "The value must be positive")
     private Double AmountKmWhenBought;
 
     @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
