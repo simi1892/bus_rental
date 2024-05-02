@@ -37,7 +37,6 @@ public class BusDbo extends BaseDbo {
     @Column(nullable = false)
     private Double AmountKmWhenBought;
 
-    // TODO: rename to either columnDbo or plural
     @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PictureDbo> pictures;
 
