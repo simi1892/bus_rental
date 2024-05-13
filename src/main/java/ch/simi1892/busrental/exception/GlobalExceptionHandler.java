@@ -8,13 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(EmailAlreadyInUseException.class)
-    public ResponseEntity<Object> handleEmailAlreadyInUse(EmailAlreadyInUseException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(InvalidEmailException.class)
-    public ResponseEntity<Object> handleInvalidEmailException(InvalidEmailException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception ex) {
+        ErrorResponse errorResponse = ex.getClass().getAnnotation(ErrorResponse.class);
+        HttpStatus status = (errorResponse != null) ? errorResponse.status() : HttpStatus.INTERNAL_SERVER_ERROR;
+        return new ResponseEntity<>(ex.getMessage(), status);
     }
 }
