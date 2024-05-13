@@ -12,4 +12,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleEmailAlreadyInUse(EmailAlreadyInUseException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(InvalidEmailException.class)
+    public ResponseEntity<Object> handleInvalidEmailException(InvalidEmailException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
 }
