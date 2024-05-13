@@ -1,5 +1,6 @@
 package ch.simi1892.busrental.service;
 
+import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.entity.UserDbo;
 import ch.simi1892.busrental.exception.EmailAlreadyInUseException;
@@ -35,6 +36,8 @@ class UserServiceTest {
         userDto.setFirstName("John");
         userDto.setLastName("Doe");
         userDto.setEmail("john.doe@example.com");
+        userDto.setPassword("password");
+        userDto.setPasswordConfirmation("password");
         userDto.setStreet("123 Main St");
         userDto.setStreetNr("4A");
         userDto.setZip(12345);
@@ -46,7 +49,7 @@ class UserServiceTest {
         Mockito.when(userRepository.findByEmail(ArgumentMatchers.anyString())).thenReturn(Optional.empty());
         Mockito.when(userRepository.save(Mockito.any(UserDbo.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        UserRegistrationDto result = userService.registerUser(userDto);
+        UserDto result = userService.registerUser(userDto);
 
         assertNotNull(result);
         assertEquals(userDto.getEmail(), result.getEmail());
@@ -74,4 +77,47 @@ class UserServiceTest {
         // Further Assert
         Mockito.verify(userRepository, Mockito.never()).save(Mockito.any(UserDbo.class));
     }
+
+    @Test
+    void registerUser_WhenPasswordIsEmpty_ShouldThrowIllegalArgumentException() {
+        // Arrange
+        userDto.setPassword("");
+        userDto.setPasswordConfirmation("");
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.registerUser(userDto));
+        assertEquals("Password must not be empty.", exception.getMessage());
+
+        // Further Assert
+        Mockito.verify(userRepository, Mockito.never()).save(Mockito.any(UserDbo.class));
+    }
+
+    @Test
+    void registerUser_WhenPasswordIsNull_ShouldThrowIllegalArgumentException() {
+        // Arrange
+        userDto.setPassword(null);
+        userDto.setPasswordConfirmation("");
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.registerUser(userDto));
+        assertEquals("Password must not be empty.", exception.getMessage());
+
+        // Further Assert
+        Mockito.verify(userRepository, Mockito.never()).save(Mockito.any(UserDbo.class));
+    }
+
+    @Test
+    void registerUser_WhenPasswordDoesNotMatch_ShouldThrowIllegalArgumentException() {
+        // Arrange
+        userDto.setPassword("password123");
+        userDto.setPasswordConfirmation("password321");
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.registerUser(userDto));
+        assertEquals("Password and confirmation do not match.", exception.getMessage());
+
+        // Further Assert
+        Mockito.verify(userRepository, Mockito.never()).save(Mockito.any(UserDbo.class));
+    }
+
 }

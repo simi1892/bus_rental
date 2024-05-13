@@ -1,5 +1,6 @@
 package ch.simi1892.busrental.service;
 
+import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.entity.UserDbo;
 import ch.simi1892.busrental.exception.EmailAlreadyInUseException;
@@ -26,8 +27,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserRegistrationDto registerUser(UserRegistrationDto dto) {
+    public UserDto registerUser(UserRegistrationDto dto) {
         validateEmail(dto.getEmail());
+        validatePassword(dto.getPassword(), dto.getPasswordConfirmation());
         Optional<UserDbo> existingUser = userRepository.findByEmail(dto.getEmail());
         if (existingUser.isPresent()) {
             throw new EmailAlreadyInUseException(dto.getEmail());
@@ -42,6 +44,15 @@ public class UserService {
     private void validateEmail(String email) {
         if (!StringUtils.hasText(email) || !EMAIL_PATTERN.matcher(email).matches()) {
             throw new InvalidEmailException(email);
+        }
+    }
+
+    private void validatePassword(String password, String passwordConfirmation) {
+        if (!StringUtils.hasText(password)) {
+            throw new IllegalArgumentException("Password must not be empty.");
+        }
+        if (!password.equals(passwordConfirmation)) {
+            throw new IllegalArgumentException("Password and confirmation do not match.");
         }
     }
 }

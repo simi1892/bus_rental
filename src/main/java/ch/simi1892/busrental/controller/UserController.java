@@ -1,5 +1,6 @@
 package ch.simi1892.busrental.controller;
 
+import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserRegistrationDto> registerUser(@RequestBody UserRegistrationDto user) {
-        UserRegistrationDto registeredUser = userService.registerUser(user);
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserRegistrationDto user) {
+        UserDto registeredUser = userService.registerUser(user);
         return ResponseEntity.ok(registeredUser);
     }
 }

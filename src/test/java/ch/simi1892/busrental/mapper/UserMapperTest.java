@@ -1,8 +1,10 @@
 package ch.simi1892.busrental.mapper;
 
+import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.entity.AddressDbo;
 import ch.simi1892.busrental.entity.UserDbo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,11 +23,12 @@ class UserMapperTest {
         user.setFirstName("Clark");
         user.setLastName("Kent");
         user.setEmail("clark.kent@example.com");
+        user.setPassword("Password");
         user.setAddress(address);
         user.setUserRole(UserDbo.UserRole.CUSTOMER);
 
         // Act
-        UserRegistrationDto dto = UserMapper.toDto(user);
+        UserDto dto = UserMapper.toDto(user);
 
         // Assert
         Assertions.assertEquals("Clark", dto.getFirstName());
@@ -35,6 +38,7 @@ class UserMapperTest {
         Assertions.assertEquals("10A", dto.getStreetNr());
         Assertions.assertEquals(12345, dto.getZip());
         Assertions.assertEquals("Metropolis", dto.getCity());
+        Assertions.assertEquals(UserDbo.UserRole.CUSTOMER, dto.getUserRole());
     }
 
     @Test
@@ -44,6 +48,7 @@ class UserMapperTest {
         dto.setFirstName("Bruce");
         dto.setLastName("Wayne");
         dto.setEmail("bruce.wayne@example.com");
+        dto.setPassword("Password");
         dto.setStreet("1007 Mountain Drive");
         dto.setStreetNr("1");
         dto.setZip(10101);
@@ -56,6 +61,7 @@ class UserMapperTest {
         Assertions.assertEquals(dto.getFirstName(), user.getFirstName());
         Assertions.assertEquals(dto.getLastName(), user.getLastName());
         Assertions.assertEquals(dto.getEmail(), user.getEmail());
+        Assertions.assertEquals(dto.getPassword(), user.getPassword());
         Assertions.assertEquals(dto.getStreet(), user.getAddress().getStreet());
         Assertions.assertEquals(dto.getStreetNr(), user.getAddress().getStreetNr());
         Assertions.assertEquals(dto.getZip(), user.getAddress().getZip());

@@ -26,6 +26,9 @@ public class UserDbo extends BaseDbo {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private AddressDbo address;

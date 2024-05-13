@@ -1,5 +1,6 @@
 package ch.simi1892.busrental.mapper;
 
+import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.entity.AddressDbo;
 import ch.simi1892.busrental.entity.UserDbo;
@@ -9,8 +10,8 @@ import java.time.LocalDate;
 public final class UserMapper {
     private UserMapper() { }
 
-    public static UserRegistrationDto toDto(UserDbo user) {
-        UserRegistrationDto dto = new UserRegistrationDto();
+    public static UserDto toDto(UserDbo user) {
+        UserDto dto = new UserDto();
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
@@ -18,6 +19,7 @@ public final class UserMapper {
         dto.setStreetNr(user.getAddress().getStreetNr());
         dto.setZip(user.getAddress().getZip());
         dto.setCity(user.getAddress().getCity());
+        dto.setUserRole(user.getUserRole());
         return dto;
     }
 
@@ -26,6 +28,7 @@ public final class UserMapper {
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
         user.setCreateDate(LocalDate.now());
 
         AddressDbo address = new AddressDbo();
