@@ -50,7 +50,7 @@ class DataInitializerTest {
 
         // Assert
         Mockito.verify(connection, Mockito.times(1)).close();
-        Mockito.verify(statement, Mockito.times(200)).execute(Mockito.anyString());
+        Mockito.verify(statement, Mockito.times(510)).execute(Mockito.anyString());
     }
 
     @Test
