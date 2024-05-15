@@ -11,31 +11,31 @@ public final class UserMapper {
     private UserMapper() { }
 
     public static UserDto toDto(UserDbo user) {
-        UserDto dto = new UserDto();
-        dto.setFirstName(user.getFirstName());
-        dto.setLastName(user.getLastName());
-        dto.setEmail(user.getEmail());
-        dto.setStreet(user.getAddress().getStreet());
-        dto.setStreetNr(user.getAddress().getStreetNr());
-        dto.setZip(user.getAddress().getZip());
-        dto.setCity(user.getAddress().getCity());
-        dto.setUserRole(user.getUserRole());
-        return dto;
+        return new UserDto(
+        user.getFirstName(),
+        user.getLastName(),
+        user.getEmail(),
+        user.getAddress().getStreet(),
+        user.getAddress().getStreetNr(),
+        user.getAddress().getZip(),
+        user.getAddress().getCity(),
+        user.getUserRole()
+        );
     }
 
     public static UserDbo toDbo(UserRegistrationDto dto) {
         UserDbo user = new UserDbo();
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setFirstName(dto.firstName());
+        user.setLastName(dto.lastName());
+        user.setEmail(dto.email());
+        user.setPassword(dto.password());
         user.setCreateDate(LocalDate.now());
 
         AddressDbo address = new AddressDbo();
-        address.setStreet(dto.getStreet());
-        address.setStreetNr(dto.getStreetNr());
-        address.setZip(dto.getZip());
-        address.setCity(dto.getCity());
+        address.setStreet(dto.street());
+        address.setStreetNr(dto.streetNr());
+        address.setZip(dto.zip());
+        address.setCity(dto.city());
         user.setAddress(address);
 
         return user;

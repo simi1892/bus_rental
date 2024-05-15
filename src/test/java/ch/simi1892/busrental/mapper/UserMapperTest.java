@@ -31,40 +31,42 @@ class UserMapperTest {
         UserDto dto = UserMapper.toDto(user);
 
         // Assert
-        Assertions.assertEquals("Clark", dto.getFirstName());
-        Assertions.assertEquals("Kent", dto.getLastName());
-        Assertions.assertEquals("clark.kent@example.com", dto.getEmail());
-        Assertions.assertEquals("123 Elm St", dto.getStreet());
-        Assertions.assertEquals("10A", dto.getStreetNr());
-        Assertions.assertEquals(12345, dto.getZip());
-        Assertions.assertEquals("Metropolis", dto.getCity());
-        Assertions.assertEquals(UserDbo.UserRole.CUSTOMER, dto.getUserRole());
+        Assertions.assertEquals("Clark", dto.firstName());
+        Assertions.assertEquals("Kent", dto.lastName());
+        Assertions.assertEquals("clark.kent@example.com", dto.email());
+        Assertions.assertEquals("123 Elm St", dto.street());
+        Assertions.assertEquals("10A", dto.streetNr());
+        Assertions.assertEquals(12345, dto.zip());
+        Assertions.assertEquals("Metropolis", dto.city());
+        Assertions.assertEquals(UserDbo.UserRole.CUSTOMER, dto.userRole());
     }
 
     @Test
     void testToDbo() {
         // Arrange
-        UserRegistrationDto dto = new UserRegistrationDto();
-        dto.setFirstName("Bruce");
-        dto.setLastName("Wayne");
-        dto.setEmail("bruce.wayne@example.com");
-        dto.setPassword("Password");
-        dto.setStreet("1007 Mountain Drive");
-        dto.setStreetNr("1");
-        dto.setZip(10101);
-        dto.setCity("Gotham");
+        UserRegistrationDto dto = new UserRegistrationDto(
+                "Bruce",
+                "Wayne",
+                "bruce.wayne@example.com",
+                "Password",
+                "1007 Mountain Drive",
+                "Gothamstreet",
+                "1a",
+                10101,
+                "Gotham"
+        );
 
         // Act
         UserDbo user = UserMapper.toDbo(dto);
 
         // Assert
-        Assertions.assertEquals(dto.getFirstName(), user.getFirstName());
-        Assertions.assertEquals(dto.getLastName(), user.getLastName());
-        Assertions.assertEquals(dto.getEmail(), user.getEmail());
-        Assertions.assertEquals(dto.getPassword(), user.getPassword());
-        Assertions.assertEquals(dto.getStreet(), user.getAddress().getStreet());
-        Assertions.assertEquals(dto.getStreetNr(), user.getAddress().getStreetNr());
-        Assertions.assertEquals(dto.getZip(), user.getAddress().getZip());
-        Assertions.assertEquals(dto.getCity(), user.getAddress().getCity());
+        Assertions.assertEquals(dto.firstName(), user.getFirstName());
+        Assertions.assertEquals(dto.lastName(), user.getLastName());
+        Assertions.assertEquals(dto.email(), user.getEmail());
+        Assertions.assertEquals(dto.password(), user.getPassword());
+        Assertions.assertEquals(dto.street(), user.getAddress().getStreet());
+        Assertions.assertEquals(dto.streetNr(), user.getAddress().getStreetNr());
+        Assertions.assertEquals(dto.zip(), user.getAddress().getZip());
+        Assertions.assertEquals(dto.city(), user.getAddress().getCity());
     }
 }

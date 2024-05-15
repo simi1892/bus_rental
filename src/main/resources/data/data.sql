@@ -204,7 +204,7 @@ insert into t_user (id, first_name, last_name, email, password, address_id, is_a
 insert into t_user (id, first_name, last_name, email, password, address_id, is_active, create_date, user_role) values (97, 'Gabbie', 'Slingsby', 'gslingsby2o@e-recht24.de', '6080d4ea-66c7-4541-ab89-9b294eef12a9', 97, false, '2023-08-11', 'CUSTOMER');
 insert into t_user (id, first_name, last_name, email, password, address_id, is_active, create_date, user_role) values (98, 'Thorstein', 'O''Flaherty', 'toflaherty2p@naver.com', '6080d4ea-66c7-4541-ab89-9b294eef12a9', 98, true, '2024-04-21', 'TRUSTED');
 insert into t_user (id, first_name, last_name, email, password, address_id, is_active, create_date, user_role) values (99, 'Annabal', 'Fairrie', 'afairrie2q@ftc.gov', '6080d4ea-66c7-4541-ab89-9b294eef12a9', 99, false, '2023-12-18', 'TRUSTED');
-insert into t_user (id, first_name, last_name, email, password, address_id, is_active, create_date, user_role) values (100, 'Mahmoud', 'Rehm', 'mrehm2r@smh.com.au', '6080d4ea-66c7-4541-ab89-9b294eef12a9', 100, false, '2023-06-13', 'CUSTOMER');
+insert into t_user (id, first_name, last_name, email, password, address_id, is_active, create_date, user_role) values (100, 'a', 'a', 'a@a.com', '$2a$10$ATC15vERlw2rRay.eUiT6eL8nNbAc0PYHoaUTMFWWNmfK.3hIr5Eq', 100, false, '2023-06-13', 'CUSTOMER');
 
 ---------------------------------
 -- BUS --
