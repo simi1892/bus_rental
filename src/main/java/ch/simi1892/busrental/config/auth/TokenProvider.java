@@ -13,7 +13,7 @@ import java.time.ZoneOffset;
 
 @Service
 public class TokenProvider {
-    private final String JWT_SECRET = "SECRET";
+    private final String JWT_SECRET = "SECRET"; // todo: replace with secret that is received through config
 
     public String generateAccessToken(User user) {
         try {
