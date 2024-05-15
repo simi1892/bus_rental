@@ -4,7 +4,6 @@ import ch.simi1892.busrental.dto.UserDto;
 import ch.simi1892.busrental.dto.UserRegistrationDto;
 import ch.simi1892.busrental.entity.AddressDbo;
 import ch.simi1892.busrental.entity.UserDbo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
