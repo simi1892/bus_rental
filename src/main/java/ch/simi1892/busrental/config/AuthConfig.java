@@ -20,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class AuthConfig {
+    // todo: find sexy way instead of whitelisting everything
     private static final String[] WHITELIST_URLS = {
             "/api-docs",
             "/api-docs/**",
