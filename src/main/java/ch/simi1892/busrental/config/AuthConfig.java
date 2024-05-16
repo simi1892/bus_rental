@@ -1,7 +1,6 @@
 package ch.simi1892.busrental.config;
 
 import ch.simi1892.busrental.config.auth.SecurityFilter;
-import ch.simi1892.busrental.entity.UserDbo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true) // Enable method-level security
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class AuthConfig {
 
     private final SecurityFilter securityFilter;

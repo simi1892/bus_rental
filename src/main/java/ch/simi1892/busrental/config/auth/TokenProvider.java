@@ -15,10 +15,10 @@ import java.util.Date;
 @Service
 public class TokenProvider {
     @Value("${jwt.secret}")
-    private String secret;
+    String secret;
 
     @Value("${jwt.expiration_in_ms}")
-    private Long expiration_in_ms;
+    Long expiration_in_ms;
 
     private Algorithm algorithm;
 

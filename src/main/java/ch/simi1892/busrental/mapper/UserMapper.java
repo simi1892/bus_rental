@@ -11,6 +11,10 @@ public final class UserMapper {
     private UserMapper() { }
 
     public static UserDto toDto(UserDbo user) {
+        if (user == null) {
+            return null;
+        }
+
         return new UserDto(
         user.getFirstName(),
         user.getLastName(),

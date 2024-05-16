@@ -41,6 +41,17 @@ class UserMapperTest {
     }
 
     @Test
+    void testToDto_whenNull_returnNull() {
+        UserDbo user = null;
+
+        // Act
+        UserDto dto = UserMapper.toDto(user);
+
+        // Assert
+        Assertions.assertNull(dto);
+    }
+
+    @Test
     void testToDbo() {
         // Arrange
         UserRegistrationDto dto = new UserRegistrationDto(
