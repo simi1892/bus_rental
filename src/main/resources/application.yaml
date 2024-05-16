@@ -8,3 +8,7 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
+
+jwt:
+  secret: ..
+  expiration_in_ms: ..

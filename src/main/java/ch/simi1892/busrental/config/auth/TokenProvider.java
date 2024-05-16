@@ -4,24 +4,36 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.util.Date;
 
 @Service
 public class TokenProvider {
-    private final String JWT_SECRET = "SECRET"; // todo: replace with secret that is received through config
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.expiration_in_ms}")
+    private Long expiration_in_ms;
+
+    private Algorithm algorithm;
+
+    @PostConstruct
+    public void init() {
+        algorithm = Algorithm.HMAC256(secret);
+    }
 
     public String generateAccessToken(User user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
             return JWT.create()
                     .withSubject(user.getUsername())
                     .withClaim("username", user.getUsername())
-                    .withExpiresAt(genAccessExpirationDate())
+                    .withIssuedAt(new Date())
+                    .withExpiresAt(new Date(System.currentTimeMillis() + expiration_in_ms))
                     .sign(algorithm);
         } catch (JWTCreationException exception) {
             throw new JWTCreationException("Error while generating token", exception);
@@ -30,7 +42,6 @@ public class TokenProvider {
 
     public String validateToken(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
             return JWT.require(algorithm)
                     .build()
                     .verify(token)
@@ -40,7 +51,11 @@ public class TokenProvider {
         }
     }
 
-    private Instant genAccessExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }

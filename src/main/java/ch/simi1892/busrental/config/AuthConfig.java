@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,16 +20,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true) // Enable method-level security
 public class AuthConfig {
-    // todo: find sexy way instead of whitelisting everything
-    private static final String[] WHITELIST_URLS = {
-            "/api-docs",
-            "/api-docs/**",
-            "/v3/api-docs/**",
-            "/swagger-ui/**",
-            "/h2-console/**",
-            "/auth/login"
-    };
 
     private final SecurityFilter securityFilter;
 
@@ -43,9 +36,7 @@ public class AuthConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(WHITELIST_URLS).permitAll()
-                        .requestMatchers("/admin").hasRole(UserDbo.UserRole.ADMIN.name())
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)) // allow for h2
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

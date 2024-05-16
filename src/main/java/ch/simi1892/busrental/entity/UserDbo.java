@@ -60,7 +60,7 @@ public class UserDbo extends BaseDbo implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + userRole.name()));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class UserDbo extends BaseDbo implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive;
     }
 
     public enum UserRole {
